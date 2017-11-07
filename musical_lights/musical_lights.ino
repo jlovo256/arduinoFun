@@ -65,6 +65,25 @@ int PM_secondLED[] =
     N_E, N_D, N_C, N_C, N_B, N_A, N_G, N_G
 };
 
+// third stanza
+// repeat twice
+int PM_third[] =
+{
+    NOTE_B5, NOTE_G5, NOTE_A5, NOTE_A5, NOTE_C6, NOTE_A5, NOTE_B5, NOTE_B5,
+    NOTE_D6, NOTE_B5, NOTE_C6, NOTE_D6, NOTE_E6, NOTE_FS6, NOTE_G6, NOTE_G6
+};
+
+// third stanza
+// repeat twice
+int PM_thirdLED[] =
+{
+    N_B, N_G, N_A, N_A, N_C, N_A, N_B, N_B,
+    N_D, N_B, N_C, N_D, N_E, N_FS, N_HG, N_HG
+};
+
+
+
+
 /*
  * initialize the pins
  */
@@ -89,7 +108,7 @@ void loop() {
         delay(eighth);
         digitalWrite(PM_firstLED[thisNote], LOW);
         delay(breath);
-    }
+    }// end for
 
     for (int thisNote = 0; thisNote < 32; thisNote++) 
     {
@@ -98,5 +117,30 @@ void loop() {
         delay(eighth);
         digitalWrite(PM_secondLED[thisNote], LOW);
         delay(breath);
-    }
+    }// end for
+
+    int twice = 2;
+    while (twice > 0)
+    {
+        for (int thisNote = 0; thisNote < 16; thisNote++) 
+        {
+            tone(buzzer,PM_third[thisNote], eighth); //turn the buzzer on
+            digitalWrite(PM_thirdLED[thisNote], HIGH);
+            delay(eighth);
+            digitalWrite(PM_thirdLED[thisNote], LOW);
+            delay(breath);
+        }// end for
+
+        twice--;
+    }//end while
+
+    for (int thisNote = 0; thisNote < 32; thisNote++) 
+    {
+        tone(buzzer,PM_first[thisNote], eighth); //turn the buzzer on
+        digitalWrite(PM_firstLED[thisNote], HIGH);
+        delay(eighth);
+        digitalWrite(PM_firstLED[thisNote], LOW);
+        delay(breath);
+    }// end for
+
 }// end loop
